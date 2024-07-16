@@ -28,7 +28,11 @@ public class gestionDeudas {
 		return de;
 	}
 	
-	public List<deuda> getAll() {
+	public List<deuda> getAll(String cliente) {
+		return dao.getDeudas(cliente);
+	}
+	
+	public List<deuda> getAlll() {
 		return dao.getAll();
 	}
 }

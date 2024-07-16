@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 
 @Stateless
 public class deudaDAO {
@@ -32,5 +33,15 @@ public class deudaDAO {
 		String jpql = "SELECT c FROM deuda c";//Nombre de la entidad asi se haya cambiado el nombre
 		Query query = em.createQuery(jpql, cliente.class);
 		return query.getResultList();
+	}
+	
+	public List<deuda> getDeudas(String cliente){
+		TypedQuery<deuda> query = em.createQuery("SELECT l FROM deuda l WHERE l.cliente = :cliente", deuda.class);
+        query.setParameter("cliente", cliente);
+        try {
+            return query.getResultList();
+        } catch (Exception e) {
+            return null;
+        }
 	}
 }
