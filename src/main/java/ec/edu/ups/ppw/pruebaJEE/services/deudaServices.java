@@ -19,7 +19,7 @@ public class deudaServices {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("{{cliente}}")
+	@Path("{cliente}")
 	public List<deuda> list(@PathParam("cliente") String cliente){
 		return gd.getAll(cliente);
 	}
